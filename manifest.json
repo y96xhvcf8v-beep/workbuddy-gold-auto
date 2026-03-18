@@ -1,0 +1,138 @@
+{
+  "id": "workbuddy-gold-auto",
+  "name": "黄金长期跟踪系统",
+  "version": "4.2.0",
+  "description": "基于WorkBuddy的黄金市场智能跟踪与定投决策系统，整合康波周期理论与季节性规律，新增行为金融学认知偏差检查与置信度量化评估",
+  "author": "Gold Tracker Team",
+  "license": "MIT",
+  "categories": ["finance", "investment", "automation"],
+  "tags": ["黄金", "投资", "定投", "康波周期", "季节性规律"],
+  "icon": "🥇",
+  "color": "#FFD700",
+  "minWorkBuddyVersion": "1.0.0",
+  "entryPoints": {
+    "agents": [
+      {
+        "id": "gold-tracker-agent",
+        "name": "黄金跟踪助手",
+        "description": "智能分析黄金市场数据，生成跟踪报告和定投建议",
+        "file": "agents/gold-tracker.agent.md",
+        "triggers": ["黄金", "gold", "518880", "伦敦金", "定投"],
+        "autoTrigger": false
+      },
+      {
+        "id": "gold-deep-analyzer",
+        "name": "黄金深度分析器",
+        "description": "整合Deep Research、Self-Reflecting Chain和Complex Reasoning三大方法论的黄金深度分析专家",
+        "file": "agents/gold-deep-analyzer.agent.md",
+        "triggers": ["深度分析", "黄金深度", "深度研究", "复杂分析", "多维度分析", "康波分析", "季节性深度", "黄金研判", "策略制定", "深度报告"],
+        "autoTrigger": false,
+        "dependencies": ["deep-research", "self-reflecting-chain", "complex-reasoning"]
+      }
+    ],
+    "commands": [
+      {
+        "id": "gold-fetch",
+        "name": "采集黄金数据",
+        "description": "执行数据采集脚本，获取最新黄金相关市场数据",
+        "file": "commands/gold-fetch.command.md",
+        "shortcut": "/gold-fetch"
+      },
+      {
+        "id": "gold-report",
+        "name": "生成黄金报告",
+        "description": "根据采集的数据生成今日黄金跟踪报告",
+        "file": "commands/gold-report.command.md",
+        "shortcut": "/gold-report"
+      },
+      {
+        "id": "gold-backtest",
+        "name": "定投回测",
+        "description": "运行定投策略回测，验证历史表现",
+        "file": "commands/gold-backtest.command.md",
+        "shortcut": "/gold-backtest"
+      },
+      {
+        "id": "gold-setup",
+        "name": "初始化配置",
+        "description": "初始化黄金跟踪系统的配置文件和数据目录",
+        "file": "commands/gold-setup.command.md",
+        "shortcut": "/gold-setup"
+      },
+      {
+        "id": "gold-weekly-deep",
+        "name": "黄金周度深度分析",
+        "description": "直接调用黄金深度分析器，整合Deep Research+Self-Reflecting Chain+Complex Reasoning三大方法论生成专家级报告",
+        "file": "commands/gold-weekly-deep.command.md",
+        "shortcut": "/gold-weekly-deep"
+      }
+    ],
+    "hooks": [
+      {
+        "id": "gold-scheduled-report",
+        "name": "定时报告生成",
+        "description": "在定时任务触发时自动生成并发送黄金报告",
+        "file": "hooks/scheduled-report.hook.md",
+        "events": ["ScheduledTask"]
+      }
+    ]
+  },
+  "configuration": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "reportSchedule": {
+          "type": "string",
+          "description": "报告生成时间规则（RRULE格式）",
+          "default": "FREQ=DAILY;BYHOUR=15;BYMINUTE=30;BYDAY=MO,TU,WE,TH,FR"
+        },
+        "reportFormat": {
+          "type": "string",
+          "enum": ["A", "B", "C"],
+          "description": "默认报告格式：A=简报，B=事件快报，C=周度深度",
+          "default": "A"
+        },
+        "alertThresholds": {
+          "type": "object",
+          "properties": {
+            "goldPriceChange": { "type": "number", "default": 0.5 },
+            "etfPriceChange": { "type": "number", "default": 0.5 },
+            "oilPriceChange": { "type": "number", "default": 1.0 },
+            "dxyChange": { "type": "number", "default": 0.3 }
+          }
+        },
+        "seasonalEnabled": {
+          "type": "boolean",
+          "description": "是否启用季节性规律提醒（小桥流水人家方法论）",
+          "default": true
+        },
+        "dataRetentionDays": {
+          "type": "number",
+          "description": "历史报告保留天数",
+          "default": 30
+        },
+        "notificationChannels": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "报告发送渠道",
+          "default": ["workbuddy"]
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "node": ">=16.0"
+  },
+  "skillDependencies": [
+    "deep-research",
+    "self-reflecting-chain",
+    "complex-reasoning"
+  ],
+  "permissions": [
+    "fileSystem:read",
+    "fileSystem:write",
+    "network:fetch",
+    "scheduler:create"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "黄金跟踪系统市场",
+  "plugins": [
+    {
+      "name": "workbuddy-gold-auto",
+      "source": ".",
+      "description": "基于WorkBuddy的黄金市场智能跟踪与定投决策系统",
+      "version": "4.2.0"
+    }
+  ]
+}

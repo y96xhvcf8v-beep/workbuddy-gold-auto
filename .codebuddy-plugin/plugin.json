@@ -1,0 +1,35 @@
+{
+  "name": "workbuddy-gold-auto",
+  "version": "4.2.0",
+  "description": "基于WorkBuddy的黄金市场智能跟踪与定投决策系统，整合康波周期理论与季节性规律，新增行为金融学认知偏差检查与置信度量化评估",
+  "author": {
+    "name": "Gold Tracker Team",
+    "email": "52234654@qq.com"
+  },
+  "homepage": "https://github.com/52234654/workbuddy-gold-auto",
+  "repository": "https://github.com/52234654/workbuddy-gold-auto",
+  "license": "MIT",
+  "keywords": ["黄金", "投资", "定投", "康波周期", "季节性规律", "finance", "gold"],
+  "category": "金融投资",
+  "features": [
+    "智能黄金市场跟踪",
+    "康波周期分析",
+    "季节性规律提醒",
+    "认知偏差检查",
+    "置信度量化评估",
+    "定投策略回测"
+  ],
+  "requirements": {
+    "python": ">=3.8",
+    "node": ">=16.0"
+  },
+  "commands": [
+    "./commands/gold-fetch.command.md",
+    "./commands/gold-report.command.md",
+    "./commands/gold-backtest.command.md",
+    "./commands/gold-setup.command.md",
+    "./commands/gold-weekly-deep.command.md"
+  ],
+  "agents": "./agents/",
+  "hooks": "./hooks/scheduled-report.hook.md"
+}

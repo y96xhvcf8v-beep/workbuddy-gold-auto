@@ -1,0 +1,120 @@
+{
+  "_comment": "黄金跟踪系统缓存配置 - WorkBuddy Plugin版",
+  "version": "4.1.0",
+  
+  "last_sent_date": "",
+  "last_values": {
+    "gold_usd": null,
+    "etf_518880": null,
+    "au9999_cny": null,
+    "shfe_cny": null,
+    "wti_usd": null,
+    "brent_usd": null,
+    "dxy": null,
+    "tips_10y_pct": null,
+    "us10y_pct": null,
+    "rsi_14": null,
+    "vix": null,
+    "gold_oil_ratio": null,
+    "narrative": "FOMC观望期",
+    "scenario": "康波萧条期",
+    "alert_level": "normal"
+  },
+  
+  "alert_level": "normal",
+  "scenario": "FOMC观望期",
+  "narrative": "FOMC观望期",
+  "is_fomc_day": false,
+  "pending_reports": [],
+  
+  "thresholds": {
+    "gold_price_pct": 0.5,
+    "etf_price_pct": 0.5,
+    "oil_price_pct": 1.0,
+    "dxy": 0.3,
+    "tips_bp": 5,
+    "rsi_pts": 5,
+    "gold_oil_ratio": 2.0
+  },
+  
+  "_comment_seasonal": "季节性规律配置（小桥流水人家方法论）",
+  "seasonal_rules": {
+    "enabled": true,
+    "source": "小桥流水人家",
+    "periods": [
+      {
+        "name": "9-10月回调窗口",
+        "months": [9, 10],
+        "signal": "警惕回调",
+        "action": "可减仓或观望",
+        "expected_move": "5-10%回调",
+        "reason": "季节性消费需求变化、宏观数据发布周期"
+      },
+      {
+        "name": "11-12月布局窗口",
+        "months": [11, 12],
+        "signal": "逢低布局",
+        "action": "持有待涨",
+        "expected_move": "解套机会，误差1-2个月",
+        "reason": "年底上涨规律，康波萧条期避险需求"
+      },
+      {
+        "name": "年初上涨期",
+        "months": [1, 2],
+        "signal": "延续涨势",
+        "action": "维持仓位",
+        "expected_move": "继续上涨",
+        "reason": "春节需求、年初资金配置"
+      },
+      {
+        "name": "3-8月震荡期",
+        "months": [3, 4, 5, 6, 7, 8],
+        "signal": "震荡整理",
+        "action": "定投或观望",
+        "expected_move": "区间震荡",
+        "reason": "缺乏明确季节性驱动"
+      }
+    ],
+    "current_period": null,
+    "reminder_shown": false
+  },
+  "seasonal_last_reminder_month": 0,
+  
+  "_comment_delta_rules": "差量输出规则说明（给AI读取用）",
+  "delta_rules": {
+    "always_output": [
+      "date",
+      "gold_usd",
+      "etf_518880",
+      "alert_level",
+      "narrative"
+    ],
+    "output_if_changed": [
+      "scenario",
+      "wti_usd",
+      "dxy",
+      "tips_10y_pct",
+      "rsi_14",
+      "support_key",
+      "resistance_key",
+      "fomc_hike_prob_pct"
+    ],
+    "output_if_threshold_exceeded": [
+      "gold_usd",
+      "etf_518880",
+      "wti_usd",
+      "dxy",
+      "tips_10y_pct",
+      "rsi_14",
+      "gold_oil_ratio"
+    ],
+    "static_skip": [
+      "framework_logic",
+      "scenario_explanation",
+      "seasonal_rules",
+      "alert_criteria",
+      "kangbo_background",
+      "operation_table"
+    ]
+  }
+}
